@@ -42,8 +42,33 @@ function ToastPlayground() {
               />
               notice
             </label>
-
-            {/* TODO Other Variant radio buttons here */}
+            <label htmlFor="variant-warning">
+              <input
+                id="variant-warning"
+                type="radio"
+                name="variant"
+                value="warning"
+              />
+              warning
+            </label>
+            <label htmlFor="variant-success">
+              <input
+                id="variant-success"
+                type="radio"
+                name="variant"
+                value="success"
+              />
+              success
+            </label>
+            <label htmlFor="variant-error">
+              <input
+                id="variant-error"
+                type="radio"
+                name="variant"
+                value="error"
+              />
+              error
+            </label>
           </div>
         </div>
 
