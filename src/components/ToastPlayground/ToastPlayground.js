@@ -19,7 +19,7 @@ function ToastPlayground() {
         <h1>Toast Playground</h1>
       </header>
 
-      {showToast && <Toast variant={variant}>{messageText}</Toast>}
+      {showToast && <Toast variant={variant} onClose={() => setShowToast(false)}>{messageText}</Toast>}
 
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
