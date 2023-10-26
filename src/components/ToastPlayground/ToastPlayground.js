@@ -1,17 +1,17 @@
-import React from 'react';
+import React, {useContext} from 'react';
 
 import Button from '../Button';
 
 import styles from './ToastPlayground.module.css';
-import Toast from '../Toast';
 import ToastShelf from '../ToastShelf';
+import {ToastContext} from '../ToastProvider';
 
 const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 
 function ToastPlayground() {
   const [variant, setVariant] = React.useState('notice');
   const [messageText, setMessageText] = React.useState();
-  const [toasts, setToasts] = React.useState([]);
+  const toastContext = useContext(ToastContext);
 
   return (
     <div className={styles.wrapper}>
@@ -22,11 +22,7 @@ function ToastPlayground() {
 
       {/*{showToast && <Toast variant={variant} onClose={() => setShowToast(false)}>{messageText}</Toast>}*/}
       <form onSubmit={e => e.preventDefault()}>
-        <ToastShelf toasts={toasts} removeToast={indexToRemove => {
-          const newToasts = [...toasts];
-          newToasts.splice(indexToRemove, 1);
-          setToasts(newToasts);
-        }} />
+        <ToastShelf />
 
         <div className={styles.controlsWrapper}>
           <div className={styles.row}>
@@ -72,8 +68,7 @@ function ToastPlayground() {
             >
               <Button onClick={event => {
                 event.preventDefault();
-
-                setToasts([...toasts, {variant, message: messageText}]);
+                toastContext.addToast(messageText, variant);
                 setMessageText('');
                 setVariant('notice');
               }}>Pop Toast!</Button>
